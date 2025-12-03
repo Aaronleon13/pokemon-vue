@@ -14,27 +14,51 @@
       <p>No tienes una cuenta?</p>
       <button type="button" @click="$emit('switch')">Registrarse</button>
     </div>
+
+    <p v-if="isUserValid">Usuario no encontrado</p>
+    <p v-if="isServerError">Error del servidor</p>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue'
-import axios from 'axios'
+import api from '@/api/axios.js'
+import router from '@/router'
 
 defineEmits(['switch'])
 const email = ref('')
 const password = ref('')
 
+const isUserValid = ref(false)
+const isServerError = ref(false)
+
+
 const login = () => {
-  axios.post('https://api-curso-production.up.railway.app/auth/login', {
+  api.post('auth/login', {
     email: email.value,
     password: password.value
   })
-    .then(response => {
+    .then((response) => {
       console.log(response)
+      router.push('/dashboard')
+      localStorage.setItem(import.meta.env.VITE_KEY_STORAGE, true)
     })
     .catch(error => {
       console.error(error)
+      if (error.status === 400 || error.status === 404) {
+        isUserValid.value = true
+
+        setTimeout(() => {
+          isUserValid.value = false
+        }, 3000)
+
+      }
+      if (error.status === 403) {
+        isUserValid.value = true
+      }
+      if (error.status === 500) {
+        isServerError.value = true
+      }
     })
 }
 
