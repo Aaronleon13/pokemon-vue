@@ -1,33 +1,11 @@
 <template>
-  <section>
-    <h1>Dashboard</h1>
-    <p>Contenido del dashboard</p>
-
-    <logoutComponent />
-  </section>
+  <navComponent />
+  <listPokemonsComponent />
 </template>
 
 <script setup>
-import logoutComponent from '@/components/auth/logoutComponent.vue'
-import { ref, onMounted } from 'vue'
-import api from '@/api/axios.js'
-
-const userInformation = ref({})
-
-const getUserInformation = () => {
-  api.get('/me')
-    .then((response) => {
-      console.log(response)
-      userInformation.value = response.data
-    })
-    .catch(error => {
-      console.error(error)
-    })
-}
-
-onMounted(() => {
-  getUserInformation()
-})
+import navComponent from '@/components/ui/navComponent.vue'
+import listPokemonsComponent from '@/components/pokemons/listPokemonsComponent.vue';
 </script>
 
 <style scoped>

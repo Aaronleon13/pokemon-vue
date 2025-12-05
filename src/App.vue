@@ -5,4 +5,10 @@
 <script setup></script>
 
 
-<style scoped></style>
+<style>
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+</style>

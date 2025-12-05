@@ -1,8 +1,5 @@
 <template>
-  <div>
-    <h1>Logout</h1>
-    <button type="button" @click="logout">Logout</button>
-  </div>
+  <button type="button" @click="logout">Cerrar Sesión</button>
 </template>
 
 <script setup>
@@ -22,19 +19,16 @@ const logout = () => {
 </script>
 
 <style scoped>
-div {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
 button {
-  padding: 1rem;
+  padding: 10px 18px;
   background-color: red;
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+
+button:hover {
+  background-color: #cc0000;
 }
 </style>

@@ -38,8 +38,7 @@ const login = () => {
     email: email.value,
     password: password.value
   })
-    .then((response) => {
-      console.log(response)
+    .then(() => {
       router.push('/dashboard')
       localStorage.setItem(import.meta.env.VITE_KEY_STORAGE, true)
     })
