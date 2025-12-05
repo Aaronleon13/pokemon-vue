@@ -34,7 +34,7 @@ const isServerError = ref(false)
 
 
 const login = () => {
-  api.post('auth/login', {
+  api.post('/auth/login', {
     email: email.value,
     password: password.value
   })

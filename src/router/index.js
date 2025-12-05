@@ -26,11 +26,11 @@ router.beforeEach((to, from, next) => {
   const isAuthenticated = localStorage.getItem(import.meta.env.VITE_KEY_STORAGE)
 
   if (to.meta.requiresAuth && !isAuthenticated) {
-    next({ name: 'Auth' })
+    return next({ name: 'Auth' })
   }
 
   if (to.name === 'Auth' && isAuthenticated) {
-    next({ name: 'Dashboard' })
+    return next({ name: 'Dashboard' })
   }
 
   next()

@@ -10,7 +10,7 @@ import api from '@/api/axios.js'
 import router from '@/router'
 
 const logout = () => {
-  api.post('auth/logout')
+  api.post('/auth/logout')
     .then(() => {
       localStorage.removeItem(import.meta.env.VITE_KEY_STORAGE)
       router.push('/')
